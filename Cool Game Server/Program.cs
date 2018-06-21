@@ -87,12 +87,12 @@ namespace Cool_Game_Server
 
     }
 
-    public class SessionState
+    public class Session
     {
-        public State Session_State;
+        public SessionState State;
 
 
-        public enum State
+        public enum SessionState
         {
             Uninitialized,
             Initializing,
@@ -131,8 +131,8 @@ namespace Cool_Game_Server
 
             Console.WriteLine($"Name of client is {cmsg.ClientName}");
             Console.WriteLine($"PacketType is: {cmsg.PacketType}");
-            
 
+            
 
 
 
