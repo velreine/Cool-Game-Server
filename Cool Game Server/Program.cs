@@ -31,17 +31,17 @@ namespace Cool_Game_Server
 
     }
 
-    public interface IRawPacket
+    public interface IPacket
     {
         byte[] RawData { get; set; }
     }
 
-    public class RawDataPacket : IRawPacket
+    public class DataPacket : IPacket
     {
         public byte[] RawData { get; set; }
     }
 
-    internal abstract class Packet : IRawPacket
+    internal abstract class Packet : IPacket
     {
         public byte[] RawData { get; set; }
         public Type PacketType { get; set; }
@@ -105,16 +105,38 @@ namespace Cool_Game_Server
     }
 
 
+    public class PacketHandlerResult : IPacketHandlerResult
+    {
+        public string Result { get; set; }
+    }
+
+    public class PacketHandler : IPacketHandler
+    {
+        public IPacketHandlerResult Handle(IPacket packet)
+        {
+           IPacketHandlerResult phr = new PacketHandlerResult();
+           
+            /* epic handling logic here */
+
+            phr.Result = "Success";
+
+            return phr;
+
+
+        }
+    }
+
+
     public interface IPacketHandler
     {
         //void Handle(IRawPacket packet);
-        IPacketHandlerResult Handle(IRawPacket packet);
+        IPacketHandlerResult Handle(IPacket packet);
 
     }
 
     public interface IPacketHandlerResult
     {
-
+        string Result { get; set; }
     }
 
 
