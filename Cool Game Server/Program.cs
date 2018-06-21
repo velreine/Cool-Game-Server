@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +23,21 @@ namespace Cool_Game_Server
         public string PublicKey { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public Session Session { get; }
+
+        public Client()
+        {
+            this.Session = new Session();
+
+
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(GUID)}: {GUID}, {nameof(PublicKey)}: {PublicKey}, {nameof(Username)}: {Username}, {nameof(Password)}: {Password}, {nameof(Session)}: {Session.State}";
+        }
     }
+
 
     public interface IClient
     {
@@ -66,7 +81,7 @@ namespace Cool_Game_Server
         public string ClientName
         { // TODO: Boundary checks?
             get { return Encoding.ASCII.GetString(this.RawData); }
-            
+
         }
 
 
@@ -91,7 +106,6 @@ namespace Cool_Game_Server
     {
         public SessionState State;
 
-
         public enum SessionState
         {
             Uninitialized,
@@ -100,6 +114,12 @@ namespace Cool_Game_Server
             WaitingForApproval,
             Authorized
         }
+
+        public Session()
+        {
+            this.State = SessionState.Uninitialized;
+        }
+
 
 
     }
@@ -114,8 +134,8 @@ namespace Cool_Game_Server
     {
         public IPacketHandlerResult Handle(IPacket packet)
         {
-           IPacketHandlerResult phr = new PacketHandlerResult();
-           
+            IPacketHandlerResult phr = new PacketHandlerResult();
+
             /* epic handling logic here */
 
             phr.Result = "Success";
@@ -154,10 +174,37 @@ namespace Cool_Game_Server
             Console.WriteLine($"Name of client is {cmsg.ClientName}");
             Console.WriteLine($"PacketType is: {cmsg.PacketType}");
 
+
+            Client nicky = new Client
+            {
+                GUID = Guid.NewGuid(),
+                PublicKey = "",
+                Username = "Velreine",
+                Password = "1234567"
+            };
+
+            Console.WriteLine(nicky);
+            Console.WriteLine($"Current session state is: {nicky.Session.State}");
+
             
+            nicky.Session.State = Session.SessionState.Initializing;
 
+            Console.WriteLine($"Current session state is: {nicky.Session.State}");
 
+            /* Simulate epic code */
+            System.Threading.Thread.Sleep(399);
+            nicky.Session.State = Session.SessionState.Prooving;
+            Console.WriteLine($"Current session state is: {nicky.Session.State}");
 
+            /* Simulate epic code */
+            System.Threading.Thread.Sleep(299);
+            nicky.Session.State = Session.SessionState.WaitingForApproval;
+            Console.WriteLine($"Current session state is: {nicky.Session.State}");
+
+            /* Simulate epic code */
+            System.Threading.Thread.Sleep(177);
+            nicky.Session.State = Session.SessionState.Authorized;
+            Console.WriteLine($"Current session state is: {nicky.Session.State}");
         }
     }
 }
