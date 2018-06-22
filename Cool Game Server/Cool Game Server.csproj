@@ -42,8 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Networking\Client.cs" />
+    <Compile Include="Networking\IPacketHandler.cs" />
+    <Compile Include="Networking\IPacketHandlerResult.cs" />
+    <Compile Include="Networking\ISecurityIdentifier.cs" />
+    <Compile Include="Networking\IClient.cs" />
+    <Compile Include="Networking\IPacket.cs" />
+    <Compile Include="Networking\IPacketReader.cs" />
+    <Compile Include="Networking\PacketReader.cs" />
+    <Compile Include="Networking\Packet.cs" />
+    <Compile Include="Networking\PacketHandler.cs" />
+    <Compile Include="Networking\PacketHandlerResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Networking\Session.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
