@@ -26,9 +26,11 @@ namespace Cool_Game_Server
             }
         }
 
-        public Type PacketType { get; set; }
+        public PacketType Type { get; set; }
 
-        public Packet() : this(0, Type.NULL_PACKET)
+        
+
+        public Packet() : this(0, PacketType.NULL_PACKET)
         {
 
         }
@@ -38,27 +40,20 @@ namespace Cool_Game_Server
 
         }
 
-        public Packet(int length, Packet.Type type)
+        public Packet(int length, PacketType type)
         {
             this.RawData = new byte[length];
-            this.PacketType = type;
+            this.Type = type;
 
 
         }
 
-        protected Packet(byte[] rawData, Type packetType)
+        protected Packet(byte[] rawData, PacketType packetType)
         {
-            RawData = rawData;
-            PacketType = packetType;
+            this.RawData = rawData;
+            this.Type = packetType;
         }
 
-        public enum Type
-        {
-            NULL_PACKET,
-            CMSG_LOGIN_CONNECT,
-            SMSG_LOGIN_REQUESTPROOF,
-            CMSG_LOGIN_PROOF,
-            SMSG_LOGIN_APPROVE,
-        }
+        
     }
 }
