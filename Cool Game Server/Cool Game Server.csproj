@@ -53,6 +53,7 @@
     <Compile Include="Networking\IClient.cs" />
     <Compile Include="Networking\IPacket.cs" />
     <Compile Include="Networking\IPacketReader.cs" />
+    <Compile Include="Networking\PacketBuilder.cs" />
     <Compile Include="Networking\PacketReader.cs" />
     <Compile Include="Networking\Packet.cs" />
     <Compile Include="Networking\PacketHandler.cs" />

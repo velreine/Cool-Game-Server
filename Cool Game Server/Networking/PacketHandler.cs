@@ -47,7 +47,7 @@ namespace Cool_Game_Server
 
                 [PacketType.CMSG_LOGIN_AUTHENTICATION_DETAILS] = (IPacket p) =>
                 {
-                    
+                  // This packet should contain the clients username/password.  
                 },
 
                 [PacketType.CMSG_LOGIN_REQUEST_PUBLIC_KEY] = (IPacket p) =>

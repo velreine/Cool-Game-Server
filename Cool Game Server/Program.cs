@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Cool_Game_Server;
+using Cool_Game_Server.Networking;
 using Cool_Game_Server.Security;
 
 namespace Cool_Game_Server
@@ -168,49 +169,52 @@ namespace Cool_Game_Server
 
 
 
-            var crypto = new Cryptography();
-            var keys = crypto.GenerateKeys();
+            //var crypto = new Cryptography();
+            //var keys = crypto.GenerateKeys();
 
 
 
-            int m = 25;
-
-
-
-
-            // Need a client to connect to:
-            //IP: 192.168.10.13
-            //User: nicky
-            //Password: 1q2w3e4r5t
-            TcpClient tcp = new TcpClient("192.168.10.13", 1337);
-            NetworkStream ns = tcp.GetStream();
-
-            Random rnd = new Random();
-
-
-            // Inspect in WireShark:
-
-            for (int i = 0; i < 100; i++)
-            {
-                                        //1500 > should be a Jumbo frame....
-                                        //1460 is TCP max for 1 packet.
-                byte[] buffer = new byte[1600];//Encoding.ASCII.GetBytes(rnd.Next().ToString());
-                ns.Write(buffer, 0, buffer.Length);
-
-                int x = 25;
-            }
-
-            //kahoot...
+            //int m = 25;
 
 
 
 
-            string hi = "hey";
-            Console.WriteLine("hi");
+            //// Need a client to connect to:
+            ////IP: 192.168.10.13
+            ////User: nicky
+            ////Password: 1q2w3e4r5t
+            //TcpClient tcp = new TcpClient("192.168.10.13", 1337);
+            //NetworkStream ns = tcp.GetStream();
+
+            //Random rnd = new Random();
+
+
+            //// Inspect in WireShark:
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //                            //1500 > should be a Jumbo frame....
+            //                            //1460 is TCP max for 1 packet.
+            //    byte[] buffer = new byte[1600];//Encoding.ASCII.GetBytes(rnd.Next().ToString());
+            //    ns.Write(buffer, 0, buffer.Length);
+
+            //    int x = 25;
+            //}
+
+            ////kahoot...
 
 
 
 
+            //string hi = "hey";
+            //Console.WriteLine("hi");
+
+
+            PacketBuilder pb = new PacketBuilder(5);
+
+            pb.Type = PacketType.CMSG_LOGIN_AUTHENTICATION_DETAILS;
+            pb.Add(int.MaxValue);
+            pb.Add("HelloAsdfjgijigjigjgijg");
 
 
 

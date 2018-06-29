@@ -9,6 +9,8 @@
 
     }
 
+
+   
     public enum PacketType
     {
 
@@ -31,11 +33,19 @@
 
        
 
-
+        
 
 
     }
 
+    public enum PacketEncryptionLevel
+    {
+        NO_SECURITY,
+        WEAK_ENCRYPTION,
+        MEDIUM_ENCRYPTION,
+        STRONG_ENCRYPTION,
+        ULTRA_ENCRYPTION
+    }
 
 
 
